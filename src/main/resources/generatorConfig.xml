@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--导入属性配置-->
+    <properties resource="datasource.properties"></properties>
+
+    <!--指定特定数据库的 jdbc 驱动 jar 包的位置-->
+    <classPathEntry location="${db.driverLocation}"/>
+
+    <context id="default" targetRuntime="MyBatis3">
+
+        <!-- optional，指在创建 class 时，对注释进行控制 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--jdbc 的数据库连接 -->
+        <jdbcConnection
+                driverClass="${db.driverClassName}"
+                connectionURL="${db.url}"
+                userId="${db.username}"
+                password="${db.password}">
+        </jdbcConnection>
+
+
+        <!-- 非必需，类型处理器，在数据库类型和 java 类型之间的转换控制-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!-- Model 模型生成器,用来生成含有主键 key 的类，记录类 以及查询 Example 类
+            targetPackage     指定生成的 model 生成所在的包名
+            targetProject     指定在该项目下所在的路径
+        -->
+        <!--<javaModelGenerator targetPackage="com.shop.pojo" targetProject=".\src\main\java">-->
+        <javaModelGenerator targetPackage="com.shop.pojo" targetProject="./src/main/java">
+            <!-- 是否允许子包，即 targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 是否对 model 添加 构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 是否对类 CHAR 类型的列的数据进行 trim 操作 -->
+            <property name="trimStrings" value="true"/>
+            <!-- 建立的 Model 对象是否 不可改变  即生成的 Model 对象不会有 setter 方法，只有构造方法 -->
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+
+        <!--mapper 映射文件生成所在的目录 为每一个数据库的表生成对应的 SqlMap 文件 -->
+        <!--<sqlMapGenerator targetPackage="mappers" targetProject=".\src\main\resources">-->
+        <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 客户端代码，生成易于使用的针对 Model 对象和 XML 配置文件 的代码
+                type="ANNOTATEDMAPPER",生成 Java Model 和基于注解的 Mapper 对象
+                type="MIXEDMAPPER",生成基于注解的 Java Model 和相应的 Mapper 对象
+                type="XMLMAPPER",生成 SQLMap XML 文件和独立的 Mapper 接口
+        -->
+
+        <!-- targetPackage：mapper 接口 dao 生成的位置 -->
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.shop.dao" targetProject=".\src\main\java">-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shop.dao" targetProject="./src/main/java">
+            <!-- enableSubPackages:是否让 schema 作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+
+        <table tableName="shop_shipping" domainObjectName="Shipping" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="shop_cart" domainObjectName="Cart" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="shop_cart_item" domainObjectName="CartItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="shop_category" domainObjectName="Category" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="shop_order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="shop_order_item" domainObjectName="OrderItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="shop_pay_info" domainObjectName="PayInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="shop_product" domainObjectName="Product" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="detail" jdbcType="VARCHAR" />
+            <columnOverride column="sub_images" jdbcType="VARCHAR" />
+        </table>
+        <table tableName="shop_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
+
+        <!-- geelynote mybatis 插件的搭建 -->
+    </context>
+</generatorConfiguration>
