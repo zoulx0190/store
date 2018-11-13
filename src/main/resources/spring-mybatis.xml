@@ -52,7 +52,7 @@
         <property name="poolPreparedStatements" value="true" />
         <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
         <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="stat,log4j" />
+        <property name="filters" value="stat,logback" />
         <!--#给出一条简单的 sql 语句进行验证 -->
         <!--<property name="validationQuery" value="select getdate()" />
         <property name="defaultAutoCommit" value="${db.defaultAutoCommit}"/>-->
@@ -76,7 +76,7 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"></property>
+        <property name="mapperLocations" value="classpath:mappers/*Mapper.xml"></property>
 
         <!-- 分页插件 -->
         <property name="plugins">

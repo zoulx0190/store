@@ -17,6 +17,6 @@
     <aop:aspectj-autoproxy/>
 
 
-    <import resource="spring.xml"/>
+    <import resource="spring-mybatis.xml"/>
 
 </beans>
