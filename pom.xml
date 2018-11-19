@@ -19,6 +19,13 @@
   </properties>
 
   <dependencies>
+
+      <dependency>
+          <groupId>com.alipay.sdk</groupId>
+          <artifactId>alipay-sdk-java</artifactId>
+          <version>3.4.27.ALL</version>
+      </dependency>
+
 <!--
     <dependency>
       <groupId>log4j</groupId>
