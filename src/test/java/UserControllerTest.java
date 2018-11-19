@@ -2,6 +2,7 @@ import com.shop.common.Const;
 import com.shop.common.ServerResponse;
 import com.shop.controller.protal.UserController;
 import com.shop.pojo.User;
+import org.apache.commons.lang3.ClassUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +11,10 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * @ Description：
@@ -60,5 +63,10 @@ public class UserControllerTest extends AbstractTransactionalJUnit4SpringContext
         ServerResponse<User> result = userController.update_information(session,user);
         System.out.println("返回值：" + result.getMsg());
 
+    }
+
+    @Test
+    public void test1() {
+        System.out.println(request.getSession().getServletContext().getRealPath("upload"));
     }
 }

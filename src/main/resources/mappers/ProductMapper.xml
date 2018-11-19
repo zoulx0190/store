@@ -200,7 +200,7 @@
     </where>
   </select>
   
-  <select id="selectByNameAndCategoryIds" resultMap="BaseResultMap" parameterType="map">
+  <select id="getProductByRequirements" resultMap="BaseResultMap" parameterType="map">
     SELECT
     <include refid="Base_Column_List"></include>
     from shop_product

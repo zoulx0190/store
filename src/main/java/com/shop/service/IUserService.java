@@ -16,7 +16,7 @@ public interface IUserService {
 
     ServerResponse<String> checkValid(String str,String type);
 
-    ServerResponse selectQuestion(String username);
+    ServerResponse<String> selectQuestion(String username);
 
     ServerResponse<String> checkAnswer(String username,String question,String answer);
 
@@ -27,5 +27,7 @@ public interface IUserService {
     ServerResponse<User> updateInformation(User user);
 
     ServerResponse<User> getInformation(Integer id);
+
+    ServerResponse<String> checkAdminRole(User user);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Field;
 
 @Controller
 @RequestMapping("/user/")
@@ -33,9 +34,18 @@ public class UserController {
          * @Param: session
          * @return ServerResponse<User>
          */
-        ServerResponse response = iUserService.login(username, password);
+        ServerResponse<User> response = iUserService.login(username, password);
         if (response.isSuccess()) {
-            session.setAttribute(Const.CURRENT_USER, response.getData());
+            int role = response.getData().getRole();
+            String userRole=Const.CURRENT_USER;
+            switch (role){
+                case Const.Role.ROLE_CUSTOMER:
+                    break;
+                    case Const.Role.ROLE_ADMIN:
+                        userRole=Const.CURRENT_Admin;
+                        break;
+            }
+            session.setAttribute(userRole, response.getData());
         }
         return response;
     }
